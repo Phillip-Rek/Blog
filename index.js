@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const perthite = require("perthite");
 
 require("dotenv").config();
-const Article = require("./models/article")
+const Article = require("./models/article");
 
 const methodOverride = require("method-override");
 const articlesRouter = require("./routes/articles.js");
