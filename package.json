@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "method-override": "^3.0.0"
+    "method-override": "^3.0.0",
+    "perthite": "^1.0.4"
   }
 }
