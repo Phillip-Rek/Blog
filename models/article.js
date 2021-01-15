@@ -1,34 +1,15 @@
-const mongoose = require("mongoose");
+const mysql = require("mysql");
 
-const articleSchema = new mongoose.Schema({
-    title: {
-      type: String,
-      required: true,
-      default: null,
-    },
-    description: {
-      type: String,
-      default: null
-    },
-    markdown: {
-      type: String,
-      required: true,
-      default:null,
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-    },
-    slug: {
-      type: String,
-      required: true,
-      unique: true,
-      default:null,
-    },
-  });
+const pool = mysql.createConnection({
+    host: "localhost",
+    database: "test",
+    user: "root",
+})
 
-  articleSchema.pre("validate", function (next) {
-      this.slug = this.title&& this.title, { lower: true, strict: true };
-  });
+pool.connect((e) => {
+    return e ? console.log("cannot connect to the database " + e) :
+        console.log("connected to the database")
+});
 
-  module.exports = mongoose.model("Article", articleSchema);
+module.exports = {};
+module.exports.pool = pool;

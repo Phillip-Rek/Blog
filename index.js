@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const perthite = require("../perthite/index");
-const mysql = require("mysql");
+const pool = require("./models/article").pool;
 const pug = require("pug");
 
 require("dotenv").config();
@@ -10,16 +10,6 @@ const articlesRouter = require("./routes/articles.js");
 
 const PORT = process.env.PORT || 3000;
 
-const pool = mysql.createConnection({
-    host: "localhost",
-    database: "test",
-    user: "root",
-})
-
-pool.connect((e) => {
-    return e ? console.log("cannot connect to the database " + e) :
-        console.log("connected to the database")
-});
 
 app.engine("html", perthite.engine);
 app.set("view engine", "html");
@@ -39,6 +29,3 @@ app.get("/", (req, res) => {
 app.listen(PORT, function(e) {
     return e || console.log("server started on port " + PORT);
 });
-
-module.exports = {};
-module.exports.pool = pool;
