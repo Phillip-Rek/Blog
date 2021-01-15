@@ -4,13 +4,16 @@ const articleSchema = new mongoose.Schema({
     title: {
       type: String,
       required: true,
+      default: null,
     },
     description: {
       type: String,
+      default: null
     },
     markdown: {
       type: String,
       required: true,
+      default:null,
     },
     createdAt: {
       type: Date,
@@ -20,6 +23,7 @@ const articleSchema = new mongoose.Schema({
       type: String,
       required: true,
       unique: true,
+      default:null,
     },
   });
 

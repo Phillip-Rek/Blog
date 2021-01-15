@@ -1,37 +1,44 @@
 const express = require("express");
 const app = express();
-const mongoose = require("mongoose");
-const perthite = require("perthite");
+const perthite = require("../perthite/index");
+const mysql = require("mysql");
+const pug = require("pug");
 
 require("dotenv").config();
-const Article = require("./models/article");
 
-const methodOverride = require("method-override");
 const articlesRouter = require("./routes/articles.js");
 
 const PORT = process.env.PORT || 3000;
 
-mongoose.connect("mongodb://localhost:27017", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}, function (err) {
-    const msg = err ? "db connectionfailed, " + err : "db connected successfully";
-    console.log(msg);
+const pool = mysql.createConnection({
+    host: "localhost",
+    database: "test",
+    user: "root",
+})
+
+pool.connect((e) => {
+    return e ? console.log("cannot connect to the database " + e) :
+        console.log("connected to the database")
 });
 
 app.engine("html", perthite.engine);
 app.set("view engine", "html");
 
 app.use(express.urlencoded({ extended: false }));
-app.use(methodOverride("_method"));
 app.use("/articles", articlesRouter);
+app.set("static", __dirname + "/public");
 
-app.get("/", async(req, res)=>{
-    const articles = await Article.find().sort({ createdAt: "desc" });
-    res.render("index", {articles})
+app.get("/", (req, res) => {
+    const sql = "SELECT * FROM articles";
+    pool.query(sql, (err, rows, fields) => {
+        if (err) console.log("cannot select from database " + err);
+        else res.render("index", { articles: rows });
+    })
 })
 
-
-app.listen(PORT, function (e) {
+app.listen(PORT, function(e) {
     return e || console.log("server started on port " + PORT);
 });
+
+module.exports = {};
+module.exports.pool = pool;
