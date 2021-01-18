@@ -17,9 +17,14 @@ class Articles {
             if (err) console.log("cannot mysql query " + err);
             else cb();
         })
-
     }
-    remove() {}
+    remove(data, cb) {
+        const sql = `REMOVE FROM articles WHERE id='${data.id}'`;
+        pool.query(sql, [data], (err) => {
+            if (err) console.log("cannot remove from database " + err);
+            else cb();
+        })
+    }
     update(data, cb) {
         const sql = `UPDATE articles SET title='${data.title}', description='${data.desc}', markdown='${data.markd}' WHERE id='${data.id}'`;
         pool.query(sql, [data], (err, rows, fields) => {
