@@ -20,7 +20,13 @@ class Articles {
 
     }
     remove() {}
-    edit() {}
+    update(data, cb) {
+        const sql = `UPDATE articles SET title='${data.title}', description='${data.desc}', markdown='${data.markd}' WHERE id='${data.id}'`;
+        pool.query(sql, [data], (err, rows, fields) => {
+            if (err) console.log("cannot update from database " + err);
+            else cb(rows);
+        })
+    }
     getAll(cb) {
         const sql = "SELECT * FROM articles";
         pool.query(sql, (err, rows, fields) => {

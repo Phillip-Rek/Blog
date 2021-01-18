@@ -23,9 +23,17 @@ router.get("/edit/:id", (req, res) => {
     new Articles().getOne(req.params.id, cb)
 })
 
-router.get("/edit/save/:id", (req, res) => {
-    new Articles().edit()
-    console.log(req.params + req.body)
+router.post("/edit/save/:id", (req, res) => {
+    function cb() { res.redirect("/") }
+    new Articles()
+        .update({
+                title: req.body.title,
+                desc: req.body.description,
+                markd: req.body.markdown,
+                id: req.params.id
+            },
+            cb
+        )
 })
 
 router.post("/", (req, res) => {

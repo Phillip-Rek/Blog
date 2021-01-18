@@ -10,7 +10,7 @@ html(lang="en")
             div.heading
                 h2 Edit Article
             div.form
-                form(action=`/articles/edit/save/${article.id}`, method="get")
+                form(action=`/articles/edit/save/${article.id}`, method="POST")
                     div.form-group
                         label Title : 
                         input(type="text", name="title", value=article.title)
