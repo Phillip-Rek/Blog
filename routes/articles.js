@@ -23,6 +23,11 @@ router.get("/edit/:id", (req, res) => {
     new Articles().getOne(req.params.id, cb)
 })
 
+router.get("/edit/save/:id", (req, res) => {
+    new Articles().edit()
+    console.log(req.params + req.body)
+})
+
 router.post("/", (req, res) => {
     if (!req.body) return;
     const articles = new Articles();
