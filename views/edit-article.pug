@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Document
+        link(rel="stylesheet", href="http://localhost:3000/new-article.css")
+    body
+        div.container
+            div.heading
+                h2 Edit Article
+                h2= JSON.stringify(article)
+            div.form
+                form(action=`/articles`, method="post")
+                    div.form-group
+                        label Title : 
+                        input(type="text", name="title", value=article.title)
+                    div.form-group
+                        label Desctiption : 
+                        input(type="text", name="details", value=article.description)
+                    div.form-group
+                        label Markdown : 
+                        textarea(defaultValue="klk",name="markdown", value=article.markdown)
+                    div.form-group
+                        button(type="submit") Submit

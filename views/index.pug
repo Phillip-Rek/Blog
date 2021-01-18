@@ -1,0 +1,13 @@
+h1 pug template
+
+div.article
+    each article in articles
+        div
+            span= article.title
+        div
+            form(action=`articles/:${article.id}` method="post") 
+                button(type="submit") Delete
+        div
+            a(href=`articles/edit/${article.id}`) Edit
+    div.new-article
+        a(href="articles/new") New Article

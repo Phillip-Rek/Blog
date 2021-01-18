@@ -1,6 +1,11 @@
 <h1>Index page from perthite engiune</h1>
 <div {{ for(let article of articles) }}>
     <div>{{article.title}}</div>
+    <div>
+        <form method="POST" action={{ "article.id" }}>
+            <button>Delete</button>
+        </form>
+    </div>
 </div>
 
 <div class="new-article">

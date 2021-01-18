@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Document
+        link(rel="stylesheet", href="http://localhost:3000/new-article.css")
+    body
+        div.container
+            div.heading
+                h2 New Article
+            div.form
+                form(action=`/articles`, method="post")
+                    div.form-group
+                        label Title : 
+                        input(type="text" name="title")
+                    div.form-group
+                        label Details : 
+                        input(type="text" name="details")
+                    div.form-group
+                        label Markdown : 
+                        textarea(name="markdown", cols="30", rows="10")
+                    div.form-group
+                        button(type="submit") Submit

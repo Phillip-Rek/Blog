@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
 const perthite = require("../perthite/index");
-const pool = require("./models/article").pool;
+const pool = require("./models").pool;
+const Articles = require("./models/articles")
 const pug = require("pug");
 
 require("dotenv").config();
@@ -10,20 +11,20 @@ const articlesRouter = require("./routes/articles.js");
 
 const PORT = process.env.PORT || 3000;
 
-
-app.engine("html", perthite.engine);
-app.set("view engine", "html");
+app.use(express.static(__dirname + "/public"))
+    //app.engine("pug", pug);
+app.set("view engine", "pug");
 
 app.use(express.urlencoded({ extended: false }));
 app.use("/articles", articlesRouter);
 app.set("static", __dirname + "/public");
 
 app.get("/", (req, res) => {
-    const sql = "SELECT * FROM articles";
-    pool.query(sql, (err, rows, fields) => {
-        if (err) console.log("cannot select from database " + err);
-        else res.render("index", { articles: rows });
-    })
+    const callback = (articles) => {
+        const file = pug.compileFile("./views/index.pug");
+        res.send(file({ articles }))
+    }
+    new Articles().getAll(callback);
 })
 
 app.listen(PORT, function(e) {

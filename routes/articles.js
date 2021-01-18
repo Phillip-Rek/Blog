@@ -1,28 +1,38 @@
 const express = require("express");
 const router = express.Router();
-const server = require("../index");
-const pool = server.pool;
+const models = require("../models");
+const pool = models.pool;
+const Articles = require("../models/articles")
+const pug = require("pug");
 
 router.get("/new", (req, res) => {
-    res.render("new-article", {})
+    const file = pug.compileFile("./views/new-article.pug");
+    res.send(file())
 });
 
 router.get("/", (req, res) => {
     res.redirect("/");
 })
 
+router.get("/edit/:id", (req, res) => {
+    const file = pug.compileFile("./views/edit-article.pug");
+    const cb = (articles) => {
+        const article = articles[0];
+        res.send(file({ article }))
+    }
+    new Articles().getOne(req.params.id, cb)
+})
+
 router.post("/", (req, res) => {
-    const sql = "INSERT INTO articles (title, description, markdown, slug) VALUES ?"
-    const vals = [
-        req.body.title,
-        req.body.description,
-        req.body.markdown,
-        req.body.slug
-    ]
-    console.log(vals)
-    pool.query(sql, vals, (err, res) => {
-        if (err) console.log("cannot mysql query " + err)
-    })
+    if (!req.body) return;
+    const articles = new Articles();
+    try {
+        articles.create(req, () => {
+            res.redirect("/")
+        })
+    } catch (e) {
+        console.log("cannot add into the database")
+    }
 })
 
 module.exports = router;
