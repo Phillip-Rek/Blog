@@ -23,6 +23,11 @@ router.get("/edit/:id", (req, res) => {
     new Articles().getOne(req.params.id, cb)
 })
 
+router.get("/delete/:id", (req, res) => {
+    function cb() { res.redirect("/") }
+    new Articles().remove({ id: req.params.id }, cb)
+})
+
 router.post("/edit/save/:id", (req, res) => {
     function cb() { res.redirect("/") }
     new Articles()
@@ -39,12 +44,19 @@ router.post("/edit/save/:id", (req, res) => {
 router.post("/", (req, res) => {
     if (!req.body) return;
     const articles = new Articles();
+
+    if (!req.body.title ||
+        !req.body.description ||
+        !req.body.markdown
+    ) { return res.redirect("/") }
+
     try {
         articles.create(req, () => {
             res.redirect("/")
         })
     } catch (e) {
         console.log("cannot add into the database")
+        res.redirect("/")
     }
 })
 

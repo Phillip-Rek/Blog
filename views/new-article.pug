@@ -13,12 +13,12 @@ html(lang="en")
                 form(action=`/articles`, method="post")
                     div.form-group
                         label Title : 
-                        input(type="text" name="title")
+                        input(type="text" name="title", min=10)
                     div.form-group
-                        label Details : 
-                        input(type="text" name="details")
+                        label Description : 
+                        input(type="text" name="description", min=25)
                     div.form-group
                         label Markdown : 
-                        textarea(name="markdown", cols="30", rows="10")
+                        textarea(name="markdown", cols="30", rows="10", min=30)
                     div.form-group
                         button(type="submit") Submit

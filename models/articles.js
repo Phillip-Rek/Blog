@@ -19,8 +19,8 @@ class Articles {
         })
     }
     remove(data, cb) {
-        const sql = `REMOVE FROM articles WHERE id='${data.id}'`;
-        pool.query(sql, [data], (err) => {
+        const sql = `DELETE FROM articles WHERE id=${data.id}`;
+        pool.query(sql, (err) => {
             if (err) console.log("cannot remove from database " + err);
             else cb();
         })
@@ -34,14 +34,14 @@ class Articles {
     }
     getAll(cb) {
         const sql = "SELECT * FROM articles";
-        pool.query(sql, (err, rows, fields) => {
+        pool.query(sql, (err, rows) => {
             if (err) console.log("cannot select from database " + err);
             else cb(rows);
         })
     }
     getOne(id, cb) {
         const sql = "SELECT * FROM articles WHERE id = ?";
-        pool.query(sql, [id], (err, rows, fields) => {
+        pool.query(sql, [id], (err, rows) => {
             if (err) console.log("cannot select from database " + err);
             else cb(rows);
         })
