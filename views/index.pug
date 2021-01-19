@@ -4,25 +4,29 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Articles
-        link(rel="stylesheet", href="http://192.168.43.206:3000/bootstrap/dist/css/bootstrap.min.css")
-        link(rel="stylesheet", href="http://192.168.43.206:3000/index.css")
+        link(rel="stylesheet", href=`http://${domain}:3000/bootstrap/dist/css/bootstrap.min.css`)
+        link(rel="stylesheet", href=`http://${domain}:3000/index.css`)
     body
-        div
-            h1 Articles
-            a.btn.btn-primary.m-1(href="articles/new") New Article
+        div.contaner.article-container
+            div.p-1
+                h1 Articles
+                a.btn.btn-primary.m-1(href="articles/new") New Article
 
-        each article in articles
-            div.article
-                div.article-info
-                    div
-                        h4= article.title
-                    div 
-                        p= article.description
-                div.article-action
-                    div
-                        a.btn.btn-sm.btn-info.m-2(href=`articles/read/${article.id}`) Read more
-                    div
-                        a.btn.btn-sm.btn-secondary.m-2(href=`articles/edit/${article.id}`) Edit                
-                    div
-                        a.btn.btn-sm.btn-danger.m-2(href=`articles/delete/${article.id}`) Delete
-            
+            each article in articles
+                div.article
+                    div.article-info
+                        div
+                            h4= article.title
+                        div
+                            p= article.description
+                        div 
+                            p.date= article["date-created"]
+                    div.article-action
+                        div
+                            a.btn.btn-sm.btn-info.m-2(href=`articles/read/${article.id}`) Read more
+                        div
+                            a.btn.btn-sm.btn-secondary.m-2(href=`articles/edit/${article.id}`) Edit                
+                        div
+                            a.btn.btn-sm.btn-danger.m-2(href=`articles/delete/${article.id}`) Delete
+        footer.footer.p-3 Copyright &copy; Phillip Rekhotho | All Rights Reserved
+        script(src=`http://${domain}:3000/index.js`)

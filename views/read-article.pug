@@ -4,11 +4,14 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title= article.title
-    body
-        div
-            navbar 
-                a(href=`http://192.168.43.206:3000`) Home
-        div 
-            h1= article.title
-        div
-            p= article.markdown
+        link(rel="stylesheet", href=`http://${domain}:3000/bootstrap/dist/css/bootstrap.min.css`)
+        link(rel="stylesheet", href=`http://${domain}:3000/read-article.css`)
+    body.p-0.m-0
+        div.navbar
+            navbar
+                a(href=`http://${domain}:3000`) Home
+        div.container
+            div 
+                h1= article.title
+            div
+                p= article.markdown
