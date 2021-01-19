@@ -23,6 +23,15 @@ router.get("/edit/:id", (req, res) => {
     new Articles().getOne(req.params.id, cb)
 })
 
+router.get("/read/:id", (req, res) => {
+    const file = pug.compileFile("./views/read-article.pug");
+    const cb = (articles) => {
+        const article = articles[0];
+        res.send(file({ article }))
+    }
+    new Articles().getOne(req.params.id, cb)
+})
+
 router.get("/delete/:id", (req, res) => {
     function cb() { res.redirect("/") }
     new Articles().remove({ id: req.params.id }, cb)

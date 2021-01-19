@@ -5,16 +5,22 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Articles
         link(rel="stylesheet", href="http://localhost:3000/bootstrap/dist/css/bootstrap.min.css")
+        link(rel="stylesheet", href="http://localhost:3000/index.css")
     body
-        h1 pug template
+        div
+            h1 Articles
+            a.btn.btn-primary.m-1(href="articles/new") New Article
 
-        div.article
-            each article in articles
+        each article in articles
+            div.article
                 div
-                    span= article.title
-                div.btn.btn-sm.btn-danger.m-2
-                    a(href=`articles/delete/${article.id}`) Delete
-                div.btn.btn-sm.btn-info.m-2
-                    a(href=`articles/edit/${article.id}`) Edit
-        div.btn.btn-danger
-            a(href="articles/new") New Article
+                    h4= article.title
+                div 
+                    p= article.description
+                div
+                    a.btn.btn-sm.btn-info.m-2(href=`articles/read/${article.id}`) Read more
+                div
+                    a.btn.btn-sm.btn-secondary.m-2(href=`articles/edit/${article.id}`) Edit                
+                div
+                    a.btn.btn-sm.btn-danger.m-2(href=`articles/delete/${article.id}`) Delete
+        
