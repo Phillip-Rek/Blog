@@ -7,7 +7,7 @@ const pug = require("pug");
 
 router.get("/new", (req, res) => {
     const file = pug.compileFile("./views/new-article.pug");
-    res.send(file())
+    res.send(file({ domain: process.env.DOMAIN }))
 });
 
 router.get("/", (req, res) => {
@@ -18,7 +18,7 @@ router.get("/edit/:id", (req, res) => {
     const file = pug.compileFile("./views/edit-article.pug");
     const cb = (articles) => {
         const article = articles[0];
-        res.send(file({ article }))
+        res.send(file({ article, domain: process.env.DOMAIN }))
     }
     new Articles().getOne(req.params.id, cb)
 })
@@ -27,7 +27,7 @@ router.get("/read/:id", (req, res) => {
     const file = pug.compileFile("./views/read-article.pug");
     const cb = (articles) => {
         const article = articles[0];
-        res.send(file({ article }))
+        res.send(file({ article, domain: process.env.DOMAIN }))
     }
     new Articles().getOne(req.params.id, cb)
 })
