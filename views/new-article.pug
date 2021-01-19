@@ -4,9 +4,13 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Document
-        link(rel="stylesheet", href="http://localhost:3000/new-article.css")
+        link(rel="stylesheet", href="http://192.168.43.206:3000/bootstrap/dist/css/bootstrap.min.css")
+        link(rel="stylesheet", href="http://192.168.43.206:3000/new-article.css")
     body
         div.container
+            div
+                navbar.navbar
+                    a(href=`http://192.168.43.206:3000`) Home
             div.heading
                 h2 New Article
             div.form
@@ -21,4 +25,4 @@ html(lang="en")
                         label Markdown : 
                         textarea(name="markdown", cols="30", rows="10", min=30)
                     div.form-group
-                        button(type="submit") Submit
+                        button.btn.btn-success(type="submit") Submit

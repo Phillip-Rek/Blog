@@ -3,13 +3,16 @@ html(lang="en")
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Document
-        link(rel="stylesheet", href="http://localhost:3000/new-article.css")
-        link(rel="stylesheet", href="http://localhost:3000/bootstrap/dist/css/bootstrap.min.css")
+        title= "Edit " + article.title
+        link(rel="stylesheet", href="http://192.168.43.206:3000/new-article.css")
+        link(rel="stylesheet", href="http://192.168.43.206:3000/bootstrap/dist/css/bootstrap.min.css")
     body
-        div.container
+        div.container-sm
+            div
+                navbar 
+                    a(href=`http://192.168.43.206:3000`) Home
             div.heading
-                h2 Edit Article
+                h2= "Edit " + article.title
             div.form
                 form(action=`/articles/edit/save/${article.id}`, method="POST")
                     div.form-group
@@ -22,4 +25,6 @@ html(lang="en")
                         label Markdown : 
                         input(name="markdown", value=article.markdown)
                     div.form-group
-                        button(type="submit") Submit
+                        button.btn.btn-success(type="submit") Submit
+
+        

@@ -7,8 +7,10 @@
     flex-wrap: wrap;
     flex-direction: column;
     border-radius: 10px;
-    box-shadow: 3px 3px 4px 2px rgb(102, 91, 91);
+    box-shadow: 3px 3px 3px 2px rgb(102, 91, 91);
 }
+
+.article-info {}
 
 .article-action {
     display: flex;
