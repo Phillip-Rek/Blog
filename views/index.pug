@@ -13,14 +13,16 @@ html(lang="en")
 
         each article in articles
             div.article
-                div
-                    h4= article.title
-                div 
-                    p= article.description
-                div
-                    a.btn.btn-sm.btn-info.m-2(href=`articles/read/${article.id}`) Read more
-                div
-                    a.btn.btn-sm.btn-secondary.m-2(href=`articles/edit/${article.id}`) Edit                
-                div
-                    a.btn.btn-sm.btn-danger.m-2(href=`articles/delete/${article.id}`) Delete
-        
+                div.article-info
+                    div
+                        h4= article.title
+                    div 
+                        p= article.description
+                div.article-action
+                    div
+                        a.btn.btn-sm.btn-info.m-2(href=`articles/read/${article.id}`) Read more
+                    div
+                        a.btn.btn-sm.btn-secondary.m-2(href=`articles/edit/${article.id}`) Edit                
+                    div
+                        a.btn.btn-sm.btn-danger.m-2(href=`articles/delete/${article.id}`) Delete
+            
