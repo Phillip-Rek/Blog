@@ -2,8 +2,9 @@ const express = require("express");
 const app = express();
 const perthite = require("../perthite/index");
 const pool = require("./models").pool;
-const Articles = require("./models/articles")
+const Articles = require("./models/articles");
 const pug = require("pug");
+const settings = require("./settings");
 
 require("dotenv").config();
 
@@ -22,7 +23,7 @@ app.set("static", __dirname + "/public");
 app.get("/", (req, res) => {
     const callback = (articles) => {
         const file = pug.compileFile("./views/index.pug");
-        res.send(file({ articles, domain: process.env.DOMAIN }))
+        res.send(file({ articles, domain: settings.DOMAIN }))
     }
     new Articles().getAll(callback);
 })
