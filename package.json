@@ -1,19 +1,20 @@
 {
-  "name": "blog",
-  "version": "1.0.0",
-  "description": "This is a simple blogging site",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Phillip Rekhotho",
-  "license": "ISC",
-  "dependencies": {
-    "bootstrap": "^4.5.3",
-    "dotenv": "^8.2.0",
-    "method-override": "^3.0.0",
-    "mysql": "^2.18.1",
-    "perthite": "^1.0.4",
-    "pug": "^3.0.0"
-  }
+    "name": "blog",
+    "version": "1.0.0",
+    "description": "This is a simple blogging site",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Phillip Rekhotho",
+    "license": "ISC",
+    "dependencies": {
+        "bootstrap": "^4.5.3",
+        "dotenv": "^8.2.0",
+        "method-override": "^3.0.0",
+        "mysql": "^2.18.1",
+        "perthite": "^1.0.4",
+        "pug": "^3.0.0"
+    }
 }
