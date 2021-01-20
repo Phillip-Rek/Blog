@@ -1,7 +1,5 @@
 const express = require("express");
 const app = express();
-const perthite = require("../perthite/index");
-const pool = require("./models").pool;
 const Articles = require("./models/articles");
 const pug = require("pug");
 const settings = require("./settings");
