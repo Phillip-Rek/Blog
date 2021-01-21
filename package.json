@@ -10,6 +10,13 @@
     "author": "Phillip Rekhotho",
     "license": "ISC",
     "dependencies": {
-        "express": "^4.17.1"
+        "bootstrap": "^4.5.3",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "method-override": "^3.0.0",
+        "mysql": "^2.18.1",
+        "perthite": "^1.0.4",
+        "pg": "^8.5.1",
+        "pug": "^3.0.0"
     }
 }

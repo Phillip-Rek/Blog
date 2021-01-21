@@ -1,40 +1,33 @@
 const express = require("express");
 const app = express();
-// // const perthite = require("../perthite/index");
-// const pool = require("./models").pool;
-// const Articles = require("./models/articles");
-// const pug = require("pug");
-// const settings = require("./settings");
+const perthite = require("../perthite/index");
+const pool = require("./models").pool;
+const Articles = require("./models/articles");
+const pug = require("pug");
+const settings = require("./settings");
 
-// require("dotenv").config();
+require("dotenv").config();
 
-// const articlesRouter = require("./routes/articles.js");
+const articlesRouter = require("./routes/articles.js");
 
-// const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
-// app.use(express.static(__dirname + "/public"))
-//     //app.engine("pug", pug);
-// app.set("view engine", "pug");
+app.use(express.static(__dirname + "/public"))
+    //app.engine("pug", pug);
+app.set("view engine", "pug");
 
-// app.use(express.urlencoded({ extended: false }));
-// app.use("/articles", articlesRouter);
-// app.set("static", __dirname + "/public");
-
-// app.get("/", (req, res) => {
-//     const callback = (articles) => {
-//         const file = pug.compileFile("./views/index.pug");
-//         res.send(file({ articles, domain: settings.DOMAIN }))
-//     }
-//     new Articles().getAll(callback);
-// })
+app.use(express.urlencoded({ extended: false }));
+app.use("/articles", articlesRouter);
+app.set("static", __dirname + "/public");
 
 app.get("/", (req, res) => {
-    res.send("<h1>hello world</h1>")
+    const callback = (articles) => {
+        const file = pug.compileFile("./views/index.pug");
+        res.send(file({ articles, domain: settings.DOMAIN }))
+    }
+    new Articles().getAll(callback);
 })
 
-app.listen(process.env.PORT || 3000, function(e) {
-    if (e) {
-        console.log("failed to start server " + e)
-    } else
-        console.log("server started on port");
+app.listen(PORT, function(e) {
+    return e || console.log("server started on port " + PORT);
 });
