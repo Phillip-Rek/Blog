@@ -1,7 +1,5 @@
 const express = require("express");
 const app = express();
-const perthite = require("../perthite/index");
-const pool = require("./models").pool;
 const Articles = require("./models/articles");
 const pug = require("pug");
 const settings = require("./settings");
@@ -13,7 +11,6 @@ const articlesRouter = require("./routes/articles.js");
 const PORT = process.env.PORT || 3000;
 
 app.use(express.static(__dirname + "/public"))
-    //app.engine("pug", pug);
 app.set("view engine", "pug");
 
 app.use(express.urlencoded({ extended: false }));
