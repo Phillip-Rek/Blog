@@ -1,28 +1,9 @@
 const express = require("express");
 const app = express();
-const Articles = require("./models/articles");
-const pug = require("pug");
-const settings = require("./settings");
-
-require("dotenv").config();
-
-const articlesRouter = require("./routes/articles.js");
-
-const PORT = process.env.PORT || 3000;
-
-app.use(express.static(__dirname + "/public"))
-app.set("view engine", "pug");
-
-app.use(express.urlencoded({ extended: false }));
-app.use("/articles", articlesRouter);
-app.set("static", __dirname + "/public");
+//const Articles = require("./models/articles");
 
 app.get("/", (req, res) => {
-    const callback = (articles) => {
-        const file = pug.compileFile("./views/index.pug");
-        res.send(file({ articles, domain: settings.DOMAIN }))
-    }
-    new Articles().getAll(callback);
+    req.send("<h1>hello world</h1>")
 })
 
 app.listen(PORT, function(e) {
