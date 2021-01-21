@@ -17,7 +17,6 @@ const pool = new Pool({
     user: "oxxezrmpkxzyus",
     port: 5432,
     password: "63787b3172ce6501ddb4a91f564dff4702565d53649e2b933f5c396077b910f6",
-    uri: "postgres://oxxezrmpkxzyus:63787b3172ce6501ddb4a91f564dff4702565d53649e2b933f5c396077b910f6@ec2-54-144-45-5.compute-1.amazonaws.com:5432/dc3g6b2jpvldfk"
 })
 
 pool.connect((e) => {
