@@ -1,7 +1,5 @@
 const express = require("express");
 const app = express();
-const perthite = require("../perthite/index");
-const pool = require("./models").pool;
 const Articles = require("./models/articles");
 const pug = require("pug");
 const settings = require("./settings");
@@ -10,7 +8,7 @@ require("dotenv").config();
 
 const articlesRouter = require("./routes/articles.js");
 
-const PORT = process.env.PORT || 3000;
+let PORT = process.env.PORT || 3000;
 
 app.use(express.static(__dirname + "/public"))
     //app.engine("pug", pug);
