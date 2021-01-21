@@ -1,7 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const models = require("../models");
-const pool = models.pool;
 const Articles = require("../models/articles")
 const pug = require("pug");
 const settings = require("../settings")
