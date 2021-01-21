@@ -4,14 +4,13 @@ const Articles = require("./models/articles");
 const pug = require("pug");
 const settings = require("./settings");
 
-require("dotenv").config();
+// require("dotenv").config();
 
 const articlesRouter = require("./routes/articles.js");
 
 let PORT = process.env.PORT || 3000;
 
 app.use(express.static(__dirname + "/public"))
-    //app.engine("pug", pug);
 app.set("view engine", "pug");
 
 app.use(express.urlencoded({ extended: false }));
