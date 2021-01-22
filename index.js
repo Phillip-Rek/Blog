@@ -20,7 +20,7 @@ app.set("static", __dirname + "/public");
 app.get("/", (req, res) => {
     const callback = (articles) => {
         const file = pug.compileFile("./views/index.pug");
-        res.send(file({ articles, domain: settings.DOMAIN }))
+        res.send(file({ articles: articles.rows, domain: settings.DOMAIN }))
     }
     new Articles().getAll(callback);
 })

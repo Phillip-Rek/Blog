@@ -1,4 +1,5 @@
 const pool = require("./index").pool
+const createArticlesTable = require("./index").createArticlesTable
 
 class Articles {
     constructor() {}
@@ -35,8 +36,13 @@ class Articles {
     getAll(cb) {
         const sql = "SELECT * FROM articles";
         pool.query(sql, (err, rows) => {
-            if (err) console.log("cannot select from database " + err);
-            else cb(rows);
+            if (err) {
+                createArticlesTable()
+                console.log("cannot select from database " + err);
+                cb([])
+            } else {
+                cb(rows);
+            }
         })
     }
     getOne(id, cb) {
