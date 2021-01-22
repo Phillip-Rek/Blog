@@ -1,4 +1,4 @@
-const DOMAIN = "phillip-blog-site.herokuapp.com";
+const DOMAIN = "localhost";
 
 module.exports = {}
 module.exports.DOMAIN = DOMAIN;
